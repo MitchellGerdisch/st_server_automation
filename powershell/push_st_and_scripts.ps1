@@ -2,7 +2,7 @@ param($st_yaml)
 
 if (-not $st_yaml)
 {
-	"Provide -st_yaml parameter pointing to the yaml file describing the ServerTemplate to upload."
+	"Provide -st_yaml parameter pointing to the yaml file describing the ServerTemplate to upload to the account.."
 	exit
 }
 
