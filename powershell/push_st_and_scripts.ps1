@@ -1,6 +1,11 @@
 param($st_yaml)
 
-.\check_env_vars.ps1
+$missing_env_vars = .\check_env_vars.ps1
+if ($missing_env_vars) 
+{
+    $missing_env_vars
+    exit
+}
 
 if (-not $st_yaml)
 {
@@ -23,15 +28,6 @@ foreach ($rel in $account_info.links) {
 }
 
 $ENDPOINT = "us-$shard.rightscale.com"
-
-
-
-
-#if !(Test-Path env:RS_LOGIN_ACCOUNT_HOST)
-#{
-	#"Set env:RS_LOGIN_ACCOUNT_HOST to us-3.rightscale.com or us-4.rightscale.com as applicable for the given account." 
-	#$env:missing_env_var = true
-#}
 
 $env:RIGHT_ST_LOGIN_ACCOUNT_ID = $ACCOUNT_ID
 $env:RIGHT_ST_LOGIN_ACCOUNT_HOST = $ENDPOINT
