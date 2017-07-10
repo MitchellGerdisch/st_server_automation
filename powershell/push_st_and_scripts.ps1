@@ -1,25 +1,16 @@
-param($st_yaml)
-
-# Check env vars are set and then set local vars accordingly
-$missing_env_vars = .\check_common_env_vars.ps1
-if (!(Test-Path env:RIGHT_ST))
-{
-    $missing_env_vars = "$missing_env_vars `n Set env:RIGHT_ST to the path to the right_st executable."
-}
-if ($missing_env_vars) 
-{
-    $missing_env_vars
-    exit
-}
-$ACCOUNT_ID = $env:RS_LOGIN_ACCOUNT_ID
-$TOKEN = $env:RS_ACCOUNT_REFRESH_TOKEN
-$RSC = $env:RSC
-$RIGHT_ST = $env:RIGHT_ST
+param($st_yaml, $account_id, $refresh_token, $api_endpoint, $rsc, $right_st)
 
 # Check parameters
-if (-not $st_yaml)
+if ((-not $st_yaml) -or (-not $account_id) -or (-not $refresh_token) -or (-not $api_endpoint) -or (-not $rsc) -or (-not $right_st))
 {
-	"Provide -st_yaml parameter pointing to the yaml file describing the ServerTemplate to upload to the account.."
+    "USAGE: push_st_and_scripts.ps1 -st_yaml SERVERTEMPLATE_YAML -account_id ACCOUNT_ID -refresh_token REFRESH_TOKEN -api_endpoint API_ENDPOINT -rsc RSC -right_st RIGHT_ST"
+	"WHERE:"
+	"  SERVERTEMPLATE_YAML is the path to the ServerTemplate YAML file."
+	"  ACCOUNT_ID is the RightScale account ID."
+	"  REFRESH_TOKEN is the RightScale Refresh Token to use."
+	"  API_ENDPOINT is the RightScale API endpoint (e.g. us-3.rightscale.com or us-4.rightscale.com)."
+	"  RSC is the path to the rsc command line tool installed on this computer."
+    "  RIGHT_ST is the path to the right_st command line tool installed on this computer."
 	exit
 }
 
