@@ -14,18 +14,8 @@ if ((-not $st_yaml) -or (-not $account_id) -or (-not $refresh_token) -or (-not $
 	exit
 }
 
-# Get shard number and set API endpoint
-$account_info = (& $RSC -a $ACCOUNT_ID -r $TOKEN cm15 show /api/accounts/$ACCOUNT_ID) | ConvertFrom-Json 
-foreach ($rel in $account_info.links) {
-	if ($rel.rel -eq  "cluster") {
-		$shard_array = $rel.href.split("/")
-		$shard = $shard_array[($shard_array.length-1)]
-	}
-}
-$ENDPOINT = "us-$shard.rightscale.com"
-
 # Set env variables expected by right_st script and run right_st to upload the ServerTemplate
-$env:RIGHT_ST_LOGIN_ACCOUNT_ID = $ACCOUNT_ID
-$env:RIGHT_ST_LOGIN_ACCOUNT_HOST = $ENDPOINT
-$env:RIGHT_ST_LOGIN_ACCOUNT_REFRESH_TOKEN = $TOKEN
+$env:RIGHT_ST_LOGIN_ACCOUNT_ID = $account_id
+$env:RIGHT_ST_LOGIN_ACCOUNT_HOST = $api_endpoint
+$env:RIGHT_ST_LOGIN_ACCOUNT_REFRESH_TOKEN = $refresh_token
 & $RIGHT_ST st upload $st_yaml

@@ -14,7 +14,7 @@ $ACCOUNT_ID,$TOKEN,$ENDPOINT,$RSC = ./get_api_params
 
 if (!(Test-Path env:RIGHT_ST))
 {
-    $missing_env_vars = "Set env:RIGHT_ST to the path to the right_st executable."
+    Write-Host "Set env:RIGHT_ST to the path to the right_st executable."
     exit
 }
 $RIGHT_ST = $env:RIGHT_ST

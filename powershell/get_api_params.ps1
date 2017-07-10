@@ -13,10 +13,10 @@ if (!(Test-Path env:RSC))
     $missing_env_vars = "$missing_env_vars `n Set env:RSC to the path to the rsc executable."
 }
 
-if ($missing_env_var) 
+if ($missing_env_vars) 
 {
     $missing_env_vars = "MISSING ENVIRONMENT VARIABLES: `n $missing_env_vars"
-    $missing_env_vars
+    Write-Host $missing_env_vars
     exit
 }
 

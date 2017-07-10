@@ -16,4 +16,11 @@ if ((-not $name) -or (-not $deployment_href) -or (-not $cloud_href) -or (-not $s
     exit
 }
 
-"CALL RSC WITH PARAMETERS"
+# Create the server
+$server_create = (& $RSC --xh Location -a $account_id -r $refresh_token cm15 create /api/servers  "server[name]=$name" "server[deployment_href]=$deployment_href" "server[instance][cloud_href]=$cloud_href" "server[instance][server_template_href]=$st_href")
+
+# Launch the server
+$server_launch = (& $RSC -a $account_id -r $refresh_token cm15 launch $server_create)
+
+Write-Host "Server HREF: $server_create"
+

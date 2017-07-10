@@ -7,21 +7,7 @@ RightScripts:
   - ../rightscripts/Windows_SetTimeZone.ps1
   - ../rightscripts/Windows_SetLocalAccountPassword.ps1
 MultiCloudImages:
-- Name: Windows_Server_Standard_2012R2_x64
-  Revision: 21
-  Publisher: RightScale
-- Name: Windows_Server_Datacenter_2012R2_x64
-  Revision: 26
-  Publisher: RightScale
-- Name: Windows_Server_Standard_2012_x64
-  Revision: 22
-  Publisher: RightScale
-- Name: Windows_Server_Datacenter_2012_x64
-  Revision: 16
-  Publisher: RightScale
-- Name: Windows_Server_Datacenter_2008R2_x64
-  Revision: 42
-  Publisher: RightScale
+- Name: PFT Windows_Server_2012R2_x64
 Alerts:
 - Name: rs instance terminated
   Description: The instance has been terminated anormally, i.e., not through the RightScale
