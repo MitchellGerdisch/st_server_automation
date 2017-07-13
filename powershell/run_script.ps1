@@ -18,9 +18,8 @@ if ((-not $server_href) -or (-not $script_href)  -or (-not $account_id) -or (-no
 # find the instance to run the script on
 $instance_href = (& ./get_rel_href.ps1 -resource_href $server_href -rel "current_instance" -rsc $RSC -a $account_id -r $refresh_token -h $api_endpoint)
 
-$inputs = "right_script_href=$script_href" #+ $inputs_string
 # Run the script
-& $RSC -a $account_id -r $refresh_token -h $api_endpoint cm15 run_executable $instance_href  $inputs
+& $RSC -v --dump=debug -a $account_id -r $refresh_token -h $api_endpoint cm15 run_executable $instance_href "right_script_href=$script_href" "$inputs_string"
 
 Write-Host "Ran script: $script_href, with inputs: $inputs_string, on server: $server_href"
 
