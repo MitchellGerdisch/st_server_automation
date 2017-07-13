@@ -1,13 +1,14 @@
-param($name, $deployment_name, $cloud_href, $st_href)
+param($name, $deployment_name, $cloud_href, $subnet_hrefs, $st_href)
 
 # Check parameters
-if ((-not $name) -or (-not $deployment_name) -or (-not $cloud_href) -or (-not $st_href))
+if ((-not $name) -or (-not $deployment_name) -or (-not $cloud_href) -or (-not $subnet_hrefs) -or (-not $st_href))
 {
-    "USAGE: launch_server_wrapper.ps1 -name NAME -deployment_name DEPLOYMENT_NAME -cloud_href CLOUD_HREF -st_href ST_HREF"
+    "USAGE: launch_server_wrapper.ps1 -name NAME -deployment_name DEPLOYMENT_NAME -cloud_href CLOUD_HREF -subnet_hrefs SUBNET_HREFS -st_href ST_HREF"
     "WHERE:"
     "  NAME is the name to give the server."
     "  DEPLOYMENT_NAME is the name for the deployment in which to launch the server. Will create deployment if not found."
     "  CLOUD_HREF is the HREF for the cloud in which to launch the server."
+    "  SUBNET_HREFS is the HREF(s) for the subnet(s) on which to launch the server."
     "  ST_HREF is the HREF for the ServerTemplate to use for launching the server."
     exit
 }
@@ -36,4 +37,4 @@ foreach ($rel in $target_deployment.links) {
     }
 }
 
-& ./launch_server.ps1 -name $name -deployment_href $deployment_href -cloud_href $cloud_href -st_href $st_href -account_id $ACCOUNT_ID -refresh_token $TOKEN -api_endpoint $ENDPOINT -rsc $RSC -right_st $RIGHT_ST
+& ./launch_server.ps1 -name $name -deployment_href $deployment_href -cloud_href $cloud_href -subnet_hrefs $subnet_hrefs -st_href $st_href -account_id $ACCOUNT_ID -refresh_token $TOKEN -api_endpoint $ENDPOINT -rsc $RSC -right_st $RIGHT_ST
