@@ -1,6 +1,6 @@
 Name: Windows Test ServerTemplate
 Description: |
-  A ServerTemplate for testing automated ST upload and Server launches, etc.
+  New text A ServerTemplate for testing automated ST upload and Server launches, etc.
 Inputs: {}
 RightScripts: 
  Operational:
